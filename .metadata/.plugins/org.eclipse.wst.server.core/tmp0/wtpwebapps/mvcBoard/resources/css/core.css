@@ -1,0 +1,186 @@
+* {
+	font-family: 'Malgun Gothic', 'Arial'; 		/* 'Noto Sans KR Medium' */
+}
+body {
+	position: relative;
+	margin: 0;
+}
+
+.bg-eee { background-color: #eee; }
+
+.section { float: left; width: 100%; }
+.section.phor-12 { padding: 0 12px; box-sizing: border-box; }
+.section.phor-16 { padding: 0 16px; box-sizing: border-box; }
+.section.phor-24 { padding: 0 24px; box-sizing: border-box; }
+
+.grid-66 { 
+	float: left;
+	width: 66.66%;
+	box-sizing : border-box;	
+	padding: 2px;
+}
+.grid-50 { 
+	float: left;
+	width: 50%;
+	box-sizing : border-box;	
+	padding: 2px;
+}
+.grid-33 { 
+	float: left;
+	width: 33.33%;
+	box-sizing : border-box;	
+	padding: 2px;
+}
+
+.mtop-10 { margin-top: 10px }
+.mtop-20 { margin-top: 20px }
+.mtop-30 { margin-top: 30px }
+
+.mbot-10 { margin-bottom: 10px }
+.mbot-20 { margin-bottom: 20px }
+.mbot-30 { margin-bottom: 30px }
+
+.page-hdr {
+	position: relative;
+	float: left;
+	width: 100%;
+	padding: 15px;
+	box-sizing: border-box;
+	font-size: 1.1em;
+	font-weight: bold;
+	text-align: center;
+	border-bottom: 1px solid #ddd;	
+}
+.page-hdr .navicon {
+	position: absolute;
+	left: 10px; top: 16px;
+	width: 24px; height: 24px;
+	background-image: url("/images/navicon.png");
+	background-size: 24px 24px;
+	background-position: 50%;
+	background-repeat: no-repeat;
+	cursor: pointer;
+}
+.page-hdr .back {
+	position: absolute;
+	left: 10px; top: 16px;
+	width: 24px; height: 24px;
+	background-image: url("/images/btn-back.png");
+	background-size: 50%;
+	background-position: 50%;
+	background-repeat: no-repeat;
+	cursor: pointer;
+}
+.page-hdr .ctxmnu {
+	position: absolute;
+	right: 10px; top: 18px;
+	width: 20px; height: 20px;
+	background-size: 20px 20px;
+	background-position: 50%;
+	background-repeat: no-repeat;
+	cursor: pointer;
+}
+.page-hdr .ctxmnu.pen {
+	background-image: url("/images/pen.png");
+}
+.page-mnu {
+	position: fixed;
+	overflow: hidden;
+	left: -240px; top: 0;
+	width: 240px; height: 100%;
+	background-color: #ddd;
+	border-right: 1px solid #fff;
+	transition: all 0.5s ease-out;
+}
+.page-mnu .menu {
+	padding: 15px 20px;
+	background-color: #eee;
+	font-size: 1.1em;
+	border-bottom: 1px solid #ddd;
+	cursor: pointer;
+}
+.page-footer {
+	position: absolute;
+	width: 100%;
+	bottom: 20px;
+	font-size: 0.9em;
+	color: #999;
+	text-align: center;
+}
+
+.form-txt {
+	float: left;
+	width: 100%;
+	padding: 0px 15px;
+	line-height: 44px;
+	background-color: white;
+	font-size: 1.1em;
+	border: 1px solid #ddd;
+	border-radius: 20px;
+	outline: none;
+}
+.form-desc {
+	float: left;
+	width: 100%;
+	padding: 10px 5px;
+	box-sizing : border-box;	
+	font-size: 1.0em;
+	color: #666;
+}
+.form-submit {
+	float: left;
+	width: 80%;
+	margin: 10px 10%;
+	padding: 10px 0;
+	font-size: 1.0em;
+	background-color: #24C;
+	text-align: center;
+	color: white;
+	border: 1px solid #24C;
+	border-radius: 8px;
+	cursor: pointer;
+}
+.form-btn {
+	float: left;
+	padding: 8px 25px;
+	font-size: 1.0em;
+	background-color: white;
+	text-align: center;
+	color: #24C;
+	border: 1px solid #24C;
+	border-radius: 8px;
+	cursor: pointer;
+}
+
+
+/* Images --------------------------------------------------------- */
+/* source: http://nicolasgallagher.com/flexible-css-cover-images/  */
+.flex-embed {
+	position: relative;
+	overflow: hidden;
+	background-position: 50%;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+.flex-embed:before {
+	content: "";
+	display: block;
+	width: 100%;
+	padding-bottom: 75%;
+}
+.flex-embed.r4by1:before {
+	padding-bottom: 22%;
+}
+.flex-embed.r3by1:before {
+	padding-bottom: 37%;
+	/* padding-bottom: 33.33333%; */  
+}
+.flex-embed.r2by1:before {
+	padding-bottom: 50%;
+}
+.flex-embed.r16by9:before {
+	padding-bottom: 56.25%;
+}
+.flex-embed.r4by3:before {
+	padding-bottom: 65%;
+}
