@@ -6,7 +6,7 @@
 <mapper namespace="com.mvcboard.board.Dao.IDao">
 
 <select id="signcheck" resultType="com.mvcboard.board.Dto.ContentDto">
-"SELECT id FROM user WHERE id = " + id;
+"SELECT * FROM UESRS WHERE id = #{id }
 </select>
 
 	

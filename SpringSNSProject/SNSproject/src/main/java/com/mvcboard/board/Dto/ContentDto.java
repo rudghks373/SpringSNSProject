@@ -6,9 +6,7 @@ public class ContentDto {
     private String id;
     private String name;
     private String pass;
-	public ContentDto() {
-		// TODO Auto-generated constructor stub
-	}
+
 	
 	public ContentDto(String id, String name, String pass) {
 		this.id=id;
@@ -32,12 +30,14 @@ public class ContentDto {
 		this.name = name;
 	}
 
-	public String getPassword() {
+	public String getPass() {
 		return pass;
 	}
 
-	public void setPassword(String pass) {
+	public void setPass(String pass) {
 		this.pass = pass;
 	}
+
+
 
 }

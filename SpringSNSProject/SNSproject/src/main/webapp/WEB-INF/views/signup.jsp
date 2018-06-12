@@ -68,11 +68,6 @@ function check() {
 		alert("아이디(휴대폰 번호)를 입력해주세요.");
 		return false;
 	}
-	if (isNaN(id) == true) {
-		alert("아이디에는 숫자만 입력해주세요.");
-		return false;
-	}
-
 	var pass = $("#--pass").val().trim();
 	if (pass == "") {
 		alert("패스워드를 입력해주세요.");
