@@ -44,6 +44,8 @@
 		<item value="false" key="FinalModifier"/>
 	</section>
 	<section name="quick_assist_proposal_size">
+		<item value="381" key="size.y"/>
+		<item value="536" key="size.x"/>
 	</section>
 	<section name="BuildPathsPropertyPage">
 		<item value="3" key="pageIndex"/>

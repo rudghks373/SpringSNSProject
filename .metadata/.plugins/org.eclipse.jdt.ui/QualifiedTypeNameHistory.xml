@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="com.mvcboard.board.Dao.ContentDao"/>
 <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ResponseBody"/>
 <fullyQualifiedTypeName name="org.json.simple.JSONObject"/>
 <fullyQualifiedTypeName name="org.json.simple.parser.JSONParser"/>
 <fullyQualifiedTypeName name="java.sql.Date"/>
 <fullyQualifiedTypeName name="java.util.Map"/>
 <fullyQualifiedTypeName name="org.springframework.web.servlet.ModelAndView"/>
+<fullyQualifiedTypeName name="com.mvcboard.board.Dao.ContentDao"/>
 </qualifiedTypeNameHistroy>
