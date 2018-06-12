@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.json.simple.JSONObject;
@@ -142,11 +143,12 @@ public class mvcController {
 		}
 		
 		else{
+		System.out.println("입력결과 DB에 아이디존재");
         ContentDto passwordcheck = dao.loginIdcheck(data1).get(0);
         passwordcheck.getPASSWORD();
         
-        System.out.println(data2);
-        System.out.println(passwordcheck.getPASSWORD().replace(" ",""));
+        System.out.println("로그인입력 패스워드:"+data2);
+        System.out.println("DB저장된 패스워드:"+passwordcheck.getPASSWORD().replace(" ",""));
         
         if(passwordcheck.getPASSWORD().replace(" ","").equals(data2)){
         	System.out.println("완벽한로그인");
@@ -159,6 +161,62 @@ public class mvcController {
 	}
 	}
 	
+	//세션확인
+	
+	
+	@RequestMapping("/session")
+	public String session(Model model , HttpSession session) {
+		
+		
+		session.setAttribute("iogincheck", "OK");
+		String iogincheck = (String)session.getAttribute("iogincheck");
+        System.out.println("세션확인-----:"+iogincheck);
+        
+		return "main";
+	
+	}
+	
+	@RequestMapping("/sessioncheck")
+	public @ResponseBody String sessioncheck(Model model , HttpSession session , @RequestBody String paramData) {
+		
+		String iogincheck = (String)session.getAttribute("iogincheck");
+        System.out.println("세션값확인-----:"+iogincheck);
+        
+        String del = "sessiondelete=";
+        
+	    System.out.println("반응:"+paramData);
+	    
+	    
+        if(paramData.equals(del)){
+        	session.invalidate(); 
+        	System.out.println("세션삭제완료");
+        	return "deleteOK";
+        }
+        else if(iogincheck == null){
+        	return "NO";
+        }
+        
+        else{
+	        return "OK";
+	  }
+	
+        
+}
+	@RequestMapping("/logout")
+	public String logout(Model model , HttpSession session) {
+		
+		String iogincheck = (String)session.getAttribute("iogincheck");
+		removeAttribute(iogincheck);     
+		return "login";
+	
+	}
+	
+	private void removeAttribute(String iogincheck) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 	@RequestMapping("/template")
 	public String template(Model model){
 		

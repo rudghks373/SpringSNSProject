@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" href="css/core.css">
 <link rel="stylesheet" href="css/core2.css" media="only screen and (min-width:800px)">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <title>My Social Network</title>
 </head>
 <body>
@@ -54,7 +55,8 @@ function login() {
     		data : JSON.stringify(logincheck), //내가 서버로 보내는 데이터
     		success: function (data) { 
     			if (data == "OK") {
-    				window.location.href = "main";
+    				window.location.href = "session"
+    				
     			}
     			else if (data == "PS") {
     				alert("비밀 번호를 확인하십시오.");

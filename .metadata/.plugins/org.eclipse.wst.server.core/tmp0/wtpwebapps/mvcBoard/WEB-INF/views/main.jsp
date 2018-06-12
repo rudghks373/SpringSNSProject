@@ -72,17 +72,24 @@
 <script src="js/core.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-	AJAX.call("jsp/session.jsp", null, function (data) {
-		var id = data.trim();
-		if (id == "NA") {
-			window.location.href = "login.html";
-		}
-		else {
-			start(id);
-		}
-	});
+	
+	$.ajax({
+		url : 'sessioncheck', //내가 보내는 서버주소(컨트롤러)
+		dataType : 'text', //내가 서버로 부터 리턴받는 데이터 형태
+		type : 'POST', 
+		data : null, //내가 서버로 보내는 데이터
+		success: function (data) { 
+			if (data == "OK") {
+				start(id);
+			}
+			else if (data == "NO") {
+				alert("로그인이 필요합니다.");
+				window.location.href = "login"
+			}			
+	      }
+   });
 });
-
+	
 function start(id) {
 	var params = "id=" + id;
 	AJAX.call("jsp/fetch.jsp", params, function (data) {
@@ -116,10 +123,23 @@ function onSelect(menu) {
 
 function logout() {
 	if(confirm("로그아웃 하시겠습니까?") == true) {
-		AJAX.call("jsp/logout.jsp", null, function (data) {
-			window.location.href = "login.html";
-		});
-	}
+		
+	var sessiondelete = "sessiondelete";
+	
+		$.ajax({
+			url : "sessioncheck", //내가 보내는 서버주소(컨트롤러)
+			dataType : 'text', //내가 서버로 부터 리턴받는 데이터 형태
+			type : 'POST',
+			data : sessiondelete, //내가 서버로 보내는 데이터
+			success: function (data) { 
+				if (data == "deleteOK") {
+					window.location.href = "login";
+				}
+				
+		    }
+	   });
+		
+    }
 }
 
 function showFeeds(list) {
@@ -172,4 +192,5 @@ function showFeed(feed) {
 function getUrl(feed, index) {
 	return "images/" + feed.id + "/" + feed.images[index];
 }
+
 </script>
