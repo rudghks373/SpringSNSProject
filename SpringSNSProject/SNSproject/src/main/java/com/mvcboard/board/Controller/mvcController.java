@@ -110,8 +110,18 @@ public class mvcController {
 		}
 		
 	}
+	
 	@RequestMapping("/login")
-	public @ResponseBody String login(Model model, @RequestBody String paramData) throws ParseException{
+	public String login(){
+		
+	System.out.println("로그인창 접속");
+	
+		return "login";
+	}
+	
+	
+	@RequestMapping("/logincheck")
+	public @ResponseBody String logincheck(Model model, @RequestBody String paramData) throws ParseException{
 		
 		System.out.println("로그인체크창 접속");
 	    System.out.println("반응:"+paramData);
@@ -122,18 +132,33 @@ public class mvcController {
 	    String data1 = jsonObj.get("id").toString();
 	    String data2 = jsonObj.get("pass").toString();
 	    
+	    
 	    System.out.println("/////////DB////////");
+	    
 		IDao dao = sqlSession.getMapper(IDao.class);
-	   
-		Map map = new HashMap();
-		map.put("parameter1", data1);
-
-	    System.out.println(dao.login(map));
-		return "login";
 		
-	
+		if(dao.loginIdcheck(data1).isEmpty()) {
+		return "noID";	
+		}
 		
+		else{
+        ContentDto passwordcheck = dao.loginIdcheck(data1).get(0);
+        passwordcheck.getPASSWORD();
+        
+        System.out.println(data2);
+        System.out.println(passwordcheck.getPASSWORD().replace(" ",""));
+        
+        if(passwordcheck.getPASSWORD().replace(" ","").equals(data2)){
+        	System.out.println("완벽한로그인");
+        	return "OK";
+        }
+        else {
+        	System.out.println("비밀번호가 틀립니다");
+        	return "PS";
+        }
 	}
+	}
+	
 	@RequestMapping("/template")
 	public String template(Model model){
 		

@@ -10,19 +10,33 @@ public class ContentDto {
     private String PASSWORD;
 
 	
+	public ContentDto(String PASSWORD) {
+
+		this.PASSWORD = PASSWORD;
+	    
+	}
+	
+	
+	public ContentDto(String ID, String PASSWORD) {
+        this.ID = ID;
+		this.PASSWORD = PASSWORD;
+	    
+	}
+	
+    
 	public ContentDto(String ID, String NAME, String PASSWORD) {
 		this.ID=ID;
 		this.NAME = NAME;
 		this.PASSWORD = PASSWORD;
-	
-	}
+
+}
 
 	public String getID() {
 		return ID;
 	}
 
 	public void setID(String iD) {
-		ID = ID;
+		ID = iD;
 	}
 
 	public String getNAME() {
@@ -30,7 +44,7 @@ public class ContentDto {
 	}
 
 	public void setNAME(String nAME) {
-		NAME = NAME;
+		NAME = nAME;
 	}
 
 	public String getPASSWORD() {
@@ -38,12 +52,6 @@ public class ContentDto {
 	}
 
 	public void setPASSWORD(String pASSWORD) {
-		PASSWORD = PASSWORD;
+		PASSWORD = pASSWORD;
 	}
-
-
-
-
-
-
 }

@@ -9,9 +9,14 @@
 SELECT * FROM USERS WHERE id = #{id}
 </select>
 
-<select id="login" resultType="com.mvcboard.board.Dto.ContentDto" parameterType="hashMap">
-"SELECT id, password FROM users WHERE id = #{parameter1}
+<select id="loginIdcheck" resultType="com.mvcboard.board.Dto.ContentDto">
+SELECT id, password FROM USERS WHERE id = #{id}
 </select>
+
+<select id="loginPwcheck" resultType="String">
+SELECT id FROM USERS WHERE password = #{password}
+</select>
+
 
 <insert id="signup" parameterType="hashMap">
 INSERT INTO USERS(id, name, password) VALUES(#{parameter1}, #{parameter2}, #{parameter3})

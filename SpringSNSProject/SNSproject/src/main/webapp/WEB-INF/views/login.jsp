@@ -45,14 +45,24 @@ function login() {
     		"pass": $("#--pass").val().trim(),
     		
 	};
-    	
+	
     	$.ajax({
-    		url : 'login', //내가 보내는 서버주소(컨트롤러)
+    		url : 'logincheck', //내가 보내는 서버주소(컨트롤러)
     		dataType : 'text', //내가 서버로 부터 리턴받는 데이터 형태
     		type : 'POST', 
     		contentType : 'application/json; charset=UTF-8', //보내는 데이터 형태
     		data : JSON.stringify(logincheck), //내가 서버로 보내는 데이터
-    		
+    		success: function (data) { 
+    			if (data == "OK") {
+    				window.location.href = "main";
+    			}
+    			else if (data == "PS") {
+    				alert("비밀 번호를 확인하십시오.");
+    			}
+    			else if (data == "noID") {
+    				alert("가입된 회원이 아닙니다.");
+    			}
+    	    }
     	});
     	
    	}
