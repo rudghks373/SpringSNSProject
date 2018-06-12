@@ -22,7 +22,7 @@ public class ContentDto {
 	}
 
 	public void setID(String iD) {
-		ID = iD;
+		ID = ID;
 	}
 
 	public String getNAME() {
@@ -30,7 +30,7 @@ public class ContentDto {
 	}
 
 	public void setNAME(String nAME) {
-		NAME = nAME;
+		NAME = NAME;
 	}
 
 	public String getPASSWORD() {
@@ -38,7 +38,7 @@ public class ContentDto {
 	}
 
 	public void setPASSWORD(String pASSWORD) {
-		PASSWORD = pASSWORD;
+		PASSWORD = PASSWORD;
 	}
 
 

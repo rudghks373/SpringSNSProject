@@ -10,4 +10,5 @@ public interface IDao {
 
 	public ArrayList<ContentDto> signcheck(String id);
 	public void signup(Map map);
+	public ArrayList<ContentDto> login(Map map);
 }

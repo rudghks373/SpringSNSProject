@@ -1,0 +1,52 @@
+package com.mvcboard.board.Command;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.mvcboard.board.Dao.IDao;
+
+public class signcheck implements mvcCommand {
+
+	@Override
+	public void excute(Model model, @RequestBody String paramData) {
+		
+		System.out.println("체크창 접속");
+	    System.out.println("반응:"+paramData);
+	    
+	    JSONParser parser = new JSONParser(); //–JSON Parser 생성
+	    JSONObject jsonObj = (JSONObject)parser.parse(paramData); //– 넘어온 문자열을 JSON 객체로 변환
+	    
+	    String data1 = jsonObj.get("id").toString();
+	    String data2 = jsonObj.get("name").toString();
+	    String data3 = jsonObj.get("pass").toString(); //값을 가져옴
+	    
+	    System.out.println("/////////DB////////");
+		IDao dao = sqlSession.getMapper(IDao.class);
+	   
+		ModelAndView check = new ModelAndView()
+		
+	    System.out.println(dao.signcheck(data1).isEmpty());
+	    
+		if (dao.signcheck(data1).isEmpty()) {
+			Map map = new HashMap();
+			
+			map.put("parameter1", data1);
+			map.put("parameter2", data2);
+			map.put("parameter3", data3);
+			dao.signup(map);
+			System.out.println("회원가입완료");
+			
+		}
+		else {
+			System.out.println("이미 가입되어 있습니다.");
+			return "EX";
+		}
+	}
+
+}

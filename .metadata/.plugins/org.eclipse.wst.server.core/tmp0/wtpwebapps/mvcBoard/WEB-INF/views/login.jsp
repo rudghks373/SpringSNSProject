@@ -36,24 +36,26 @@ $(document).ready(function() {
 });
 
 function login() {
+	
 	if (check() == false) return;
 	
-	var params = "id=" + $("#--id").val().trim() + 
-		"&pass=" + $("#--pass").val().trim();
-	
-	AJAX.call("jsp/login.jsp", params, function(data) {
-		var code = data.trim();
-		if (code == "NA") {
-			alert("아이디가 존재하지 않습니다.");
-		}
-		else if (code == "PS") {
-			alert("패스워드가 일치하지 않습니다.");
-		}
-		else if (code == "OK") {
-			window.location.href = "main.html";
-		}
-	});
-}
+	var logincheck = {
+			
+			"id": $("#--id").val().trim(),
+    		"pass": $("#--pass").val().trim(),
+    		
+	};
+    	
+    	$.ajax({
+    		url : 'login', //내가 보내는 서버주소(컨트롤러)
+    		dataType : 'text', //내가 서버로 부터 리턴받는 데이터 형태
+    		type : 'POST', 
+    		contentType : 'application/json; charset=UTF-8', //보내는 데이터 형태
+    		data : JSON.stringify(logincheck), //내가 서버로 보내는 데이터
+    		
+    	});
+    	
+   	}
 
 function signup() {
 	window.location.href = "signup.html";
@@ -62,11 +64,7 @@ function signup() {
 function check() {
 	var id = $("#--id").val().trim();
 	if (id == "") {
-		alert("아이디(휴대폰 번호)를 입력해주세요.");
-		return false;
-	}
-	if (isNaN(id) == true) {
-		alert("아이디에는 숫자만 입력해주세요.");
+		alert("아이디를 입력해주세요.");
 		return false;
 	}
 

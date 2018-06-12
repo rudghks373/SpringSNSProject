@@ -13,7 +13,7 @@
 	<div class="page-hdr">회원가입</div>
 	<div class="section bg-eee phor-24">
 		<input id="--name" class="form-txt mtop-30 " type="text" placeholder="이름">
-		<input id="--id" class="form-txt mtop-10 " type="text" placeholder="아이디 (휴대폰번호)">
+		<input id="--id" class="form-txt mtop-10 " type="text" placeholder="아이디 ">
 		<input id="--pass" class="form-txt mtop-10" type="password" placeholder="패스워드">
 		<input id="--pass2" class="form-txt mtop-10 mbot-30" type="password" placeholder="패스워드 (확인)">
 		
@@ -25,7 +25,7 @@
 </body>
 </html>
 
-<script src="js/jquery-1.12.0.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="js/core.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
@@ -43,17 +43,17 @@ function signcehck() {
     	};
     	
     	$.ajax({
-    		url : 'signcheck',
-    		dataType : 'json',
-    		type : 'POST',
-    		contentType : 'application/json; charset=UTF-8',
-    		data : JSON.stringify(signinfo),
-    		success: function (data) {
-    			var code = data.trim();
-    			if (code == "EX") {
+    		url : 'signcheck', //내가 보내는 서버주소(컨트롤러)
+    		dataType : 'text', //내가 서버로 부터 리턴받는 데이터 형태
+    		type : 'POST', 
+    		contentType : 'application/json; charset=UTF-8', //보내는 데이터 형태
+    		data : JSON.stringify(signinfo), //내가 서버로 보내는 데이터
+    		success: function (data) { 
+    			if (data == "EX") {
     				alert("이미 가입된 아이디입니다.");
+    			
     			}
-    			else if (code == "OK") {
+    			else if (data == "OK") {
     				alert("회원 가입이 완료되었습니다.");
     				window.location.href = "main";
     			        }
@@ -62,29 +62,7 @@ function signcehck() {
     	});
     	
    	}
-   	/*
-function signup() {
-	
-	$.ajax({
-		url : 'signcheck',
-		dataType : 'text',
-		type : 'POST',
-        success: function (data) {
-	var code = data.trim();
-	if (code == "EX") {
-		alert("이미 가입된 아이디입니다.");
-	}
-	else if (code == "OK") {
-		alert("회원 가입이 완료되었습니다.");
-		window.location.href = "main";
-	        }
-	     }
-    	});
-	
-   	}
-   	*/
-    	
-//회원입력공백체크
+
 function check() {
 	var name = $("#--name").val().trim();
 	if (name == "") {

@@ -77,7 +77,7 @@ public class mvcController {
 	 
 	@RequestMapping("/signcheck")
 	public @ResponseBody String signcheck(Model model, @RequestBody String paramData	) throws ParseException {
-		
+	
 		System.out.println("체크창 접속");
 	    System.out.println("반응:"+paramData);
 	    
@@ -87,8 +87,6 @@ public class mvcController {
 	    String data1 = jsonObj.get("id").toString();
 	    String data2 = jsonObj.get("name").toString();
 	    String data3 = jsonObj.get("pass").toString(); //값을 가져옴
-	    
-	    
 	    
 	    System.out.println("/////////DB////////");
 		IDao dao = sqlSession.getMapper(IDao.class);
@@ -113,11 +111,29 @@ public class mvcController {
 		
 	}
 	@RequestMapping("/login")
-	public String login(Model model){
+	public @ResponseBody String login(Model model, @RequestBody String paramData) throws ParseException{
 		
+		System.out.println("로그인체크창 접속");
+	    System.out.println("반응:"+paramData);
+	    
+	    JSONParser parser = new JSONParser(); //–JSON Parser 생성
+	    JSONObject jsonObj = (JSONObject)parser.parse(paramData); //– 넘어온 문자열을 JSON 객체로 변환
+	    
+	    String data1 = jsonObj.get("id").toString();
+	    String data2 = jsonObj.get("pass").toString();
+	    
+	    System.out.println("/////////DB////////");
+		IDao dao = sqlSession.getMapper(IDao.class);
+	   
+		Map map = new HashMap();
+		map.put("parameter1", data1);
+
+	    System.out.println(dao.login(map));
 		return "login";
-	}
+		
 	
+		
+	}
 	@RequestMapping("/template")
 	public String template(Model model){
 		

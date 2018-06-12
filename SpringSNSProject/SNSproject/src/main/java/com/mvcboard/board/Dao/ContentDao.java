@@ -2,6 +2,7 @@ package com.mvcboard.board.Dao;
 
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -28,7 +29,14 @@ public class ContentDao implements IDao {
 	}
 
 	@Override
-	public void signup(String id, String name, String password) {
+	public void signup(Map map) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public ArrayList<ContentDto> login(Map map) {
+		return null;
 		// TODO Auto-generated method stub
 		
 	}
