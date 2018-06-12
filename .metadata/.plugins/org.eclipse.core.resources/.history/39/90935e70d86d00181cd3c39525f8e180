@@ -1,0 +1,24 @@
+package com.mvcboard.board.Dto;
+
+import java.sql.Date;
+
+public class ContentDto {
+
+
+    private String ID;
+    private String NAME;
+    private String PASSWORD;
+    private Date TS;
+	
+	public ContentDto(String ID, String NAME, String PASSWORD, Date TS) {
+		this.ID=ID;
+		this.NAME = NAME;
+		this.PASSWORD = PASSWORD;
+		this.TS = TS;
+	}
+
+
+
+
+
+}

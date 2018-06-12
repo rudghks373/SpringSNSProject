@@ -18,7 +18,7 @@
 		<input id="--pass2" class="form-txt mtop-10 mbot-30" type="password" placeholder="패스워드 (확인)">
 		
 		<div class="section mbot-30">
-			<div class="form-submit" onclick="signup()">MySNS에 가입합니다.</div>
+			<div class="form-submit" onclick="signcehck()">MySNS에 가입합니다.</div>
 		</div>
 	</div>
 	<div class="page-footer">MYSNS COMPANY 2017</div>
@@ -31,31 +31,60 @@
 $(document).ready(function() {
 
 });
-
-function signup() {
+//회원가입체크
+function signcehck() {
     	
 	if (check() == false) return;
 	
-    	var signcheck = {
-
+    	var signinfo = {
     		"id": $("#--id").val().trim(),
     		"name": $("#--name").val().trim(),
     		"pass": $("#--pass").val().trim(),
     	};
     	
-
     	$.ajax({
     		url : 'signcheck',
     		dataType : 'json',
     		type : 'POST',
     		contentType : 'application/json; charset=UTF-8',
-    		data : JSON.stringify(signcheck),
+    		data : JSON.stringify(signinfo),
+    		success: function (data) {
+    			var code = data.trim();
+    			if (code == "EX") {
+    				alert("이미 가입된 아이디입니다.");
+    			}
+    			else if (code == "OK") {
+    				alert("회원 가입이 완료되었습니다.");
+    				window.location.href = "main";
+    			        }
+    			     }
+    		
     	});
-    
-    	}
-
-
-
+    	
+   	}
+   	/*
+function signup() {
+	
+	$.ajax({
+		url : 'signcheck',
+		dataType : 'text',
+		type : 'POST',
+        success: function (data) {
+	var code = data.trim();
+	if (code == "EX") {
+		alert("이미 가입된 아이디입니다.");
+	}
+	else if (code == "OK") {
+		alert("회원 가입이 완료되었습니다.");
+		window.location.href = "main";
+	        }
+	     }
+    	});
+	
+   	}
+   	*/
+    	
+//회원입력공백체크
 function check() {
 	var name = $("#--name").val().trim();
 	if (name == "") {

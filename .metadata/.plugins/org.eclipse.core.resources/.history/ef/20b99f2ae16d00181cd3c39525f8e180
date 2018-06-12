@@ -1,0 +1,12 @@
+package com.mvcboard.board.Dao;
+
+import java.util.ArrayList;
+
+import com.mvcboard.board.Dto.ContentDto;
+
+
+public interface IDao {
+
+	public ArrayList<ContentDto> signcheck(String id);
+	public void signup(String id, String name , String password);
+}

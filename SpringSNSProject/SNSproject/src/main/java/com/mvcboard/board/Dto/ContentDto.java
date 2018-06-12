@@ -1,42 +1,48 @@
 package com.mvcboard.board.Dto;
 
+import java.sql.Date;
+
 public class ContentDto {
 
 
-    private String id;
-    private String name;
-    private String pass;
+    private String ID;
+    private String NAME;
+    private String PASSWORD;
 
 	
-	public ContentDto(String id, String name, String pass) {
-		this.id=id;
-		this.name = name;
-		this.pass = pass;
+	public ContentDto(String ID, String NAME, String PASSWORD) {
+		this.ID=ID;
+		this.NAME = NAME;
+		this.PASSWORD = PASSWORD;
+	
 	}
 
-	public String getId() {
-		return id;
+	public String getID() {
+		return ID;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setID(String iD) {
+		ID = iD;
 	}
 
-	public String getName() {
-		return name;
+	public String getNAME() {
+		return NAME;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setNAME(String nAME) {
+		NAME = nAME;
 	}
 
-	public String getPass() {
-		return pass;
+	public String getPASSWORD() {
+		return PASSWORD;
 	}
 
-	public void setPass(String pass) {
-		this.pass = pass;
+	public void setPASSWORD(String pASSWORD) {
+		PASSWORD = pASSWORD;
 	}
+
+
+
 
 
 

@@ -27,6 +27,12 @@ public class ContentDao implements IDao {
 		return null;
 	}
 
+	@Override
+	public void signup(String id, String name, String password) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }
 
