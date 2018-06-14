@@ -55,7 +55,7 @@ function login() {
     		data : JSON.stringify(logincheck), //내가 서버로 보내는 데이터
     		success: function (data) { 
     			if (data == "OK") {
-    				window.location.href = "session"
+    				location.replace("main");
     				
     			}
     			else if (data == "PS") {

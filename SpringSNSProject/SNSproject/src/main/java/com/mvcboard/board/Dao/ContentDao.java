@@ -41,6 +41,18 @@ public class ContentDao implements IDao {
 		
 	}
 
+	@Override
+	public ArrayList<ContentDto> fetch(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void writeup(Map map) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 
 

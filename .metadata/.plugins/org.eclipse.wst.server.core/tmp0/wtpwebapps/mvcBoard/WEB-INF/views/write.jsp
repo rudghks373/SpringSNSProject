@@ -64,7 +64,11 @@
 		<div id="--img-pane" class="image-pane mtop-10 mbot-20"></div>
 		
 		<div class="section mbot-30">
-			<div class="form-submit" onclick="upload()">작성글을 업로드합니다.</div>
+			<div class="form-submit" onclick="upload2()">작성글을 업로드합니다.</div>
+		</div>
+		
+		<div class="form-btn mbot-30">
+		<div class="button" onclick="maingo()">메인으로 돌아가기</div>
 		</div>
 	</div>
 	<div class="page-footer">MYSNS COMPANY 2017</div>
@@ -75,16 +79,31 @@
 <script src="js/core.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-	AJAX.call("jsp/session.jsp", null, function (data) {
-		var id = data.trim();
-		if (id == "NA") {
-			window.location.href = "login.html";
-		}
-		else {
-			start(id);
-		}
-	});
+	$.ajax({
+		url : 'sessioncheck', //내가 보내는 서버주소(컨트롤러)
+		dataType : 'text', //내가 서버로 부터 리턴받는 데이터 형태
+		type : 'POST', 
+		data : null, //내가 서버로 보내는 데이터
+		success: function (data) { 
+			if (data == "OK") {
+                console.log("세션값있음")
+			}
+			else if (data == "NO") {
+				alert("로그인이 필요합니다.");
+				location.replace("login");
+			}			
+	      }
+   });
 });
+
+function maingo() {
+	location.replace("main");
+}
+
+function upload2() {
+
+	location.replace("fetch");
+}
 
 var pagectx = {};
 function start(id) {
@@ -97,22 +116,35 @@ function openImage() {
 	ImageUploader.open();
 }
 
-function upload() {
-	if (check() == false) return;
-	
-	// make the HTTP request in a form of the "Form data"
-	var params = new FormData();
-	params.append("id", pagectx.id);
-	params.append("desc", $("#--desc").val().trim());
 
-	var images = ImageUploader.get();
-	for(var i=0; i<images.length; i++) {
-		params.append("image", images[i]);
-	}
+function upload2() {
+	if (check() == false) return;
+
+	var id = "<%=(String)session.getAttribute("iogincheck")%>"
+	var writedate = {
+			"id":id,
+			"jsonobj": $("#--desc").val().trim()
+	};
 	
-	AJAX.formCall("jsp/write.jsp", params, function(data) {
-		alert("작성글을 업로드하였습니다.");
-		history.back();
+	console.log(writedate);
+	$(document).ready(function() {
+		$.ajax({
+			url :'fetch', //내가 보내는 서버주소(컨트롤러)
+			dataType : 'text', //내가 서버로 부터 리턴받는 데이터 형태
+			type : 'POST', 
+			data : JSON.stringify(writedate),
+			contentType : 'application/json; charset=UTF-8',//내가 서버로 보내는 데이터
+			success: function (data) { 
+				if (data == "writeOK") {
+					alert("글 작성 완료.");
+					location.replace("main");
+				}
+				else if (data == "writeNO") {
+					alert("로그인이 필요합니다.");
+					location.replace("login");
+				}			
+		      }
+	   });
 	});
 }
 

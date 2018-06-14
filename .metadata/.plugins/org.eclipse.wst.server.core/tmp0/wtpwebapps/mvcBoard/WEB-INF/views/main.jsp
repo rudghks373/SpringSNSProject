@@ -50,6 +50,39 @@
 	padding: 15px 0px;
 	box-sizing: border-box;	
 }
+.page-hdr .back {
+	position: absolute;
+	left: 10px; top: 16px;
+	width: 24px; height: 24px;
+	background-image: url("images/btn-back.png");
+	background-size: 50%;
+	background-position: 50%;
+	background-repeat: no-repeat;
+	cursor: pointer;
+}
+.page-hdr .ctxmnu {
+	position: absolute;
+	right: 10px; top: 18px;
+	width: 20px; height: 20px;
+	background-size: 20px 20px;
+	background-position: 50%;
+	background-repeat: no-repeat;
+	cursor: pointer;
+}
+.page-hdr .ctxmnu.pen {
+	background-image: url("images/pen.png");
+}
+
+.page-hdr .navicon {
+	position: absolute;
+	left: 10px; top: 16px;
+	width: 24px; height: 24px;
+	background-image: url("images/navicon.png");
+	background-size: 24px 24px;
+	background-position: 50%;
+	background-repeat: no-repeat;
+	cursor: pointer;
+}
 </style>
 </head>
 <body style="background-color: #eee">
@@ -80,26 +113,16 @@ $(document).ready(function() {
 		data : null, //내가 서버로 보내는 데이터
 		success: function (data) { 
 			if (data == "OK") {
-				start(id);
+                console.log("세션값있음")
 			}
 			else if (data == "NO") {
 				alert("로그인이 필요합니다.");
-				window.location.href = "login"
+				location.replace("login");
 			}			
 	      }
    });
 });
 	
-function start(id) {
-	var params = "id=" + id;
-	AJAX.call("jsp/fetch.jsp", params, function (data) {
-		var list = JSON.parse(data.trim());
-		if (list.length > 0) {
-			$("#--empty-msg").addClass("hide");
-			showFeeds(list);
-		}
-	});
-}
 
 function showMenu(hide) {
 	if (hide == false) {
@@ -133,7 +156,7 @@ function logout() {
 			data : sessiondelete, //내가 서버로 보내는 데이터
 			success: function (data) { 
 				if (data == "deleteOK") {
-					window.location.href = "login";
+					window.location.replace("login");
 				}
 				
 		    }
