@@ -1,7 +1,5 @@
 package com.mvcboard.board.Dto;
 
-import java.sql.Date;
-
 public class ContentDto {
 
     private String num;
@@ -22,11 +20,7 @@ public class ContentDto {
 	    
 	}
 	
-	public void ContentDto1(String ID, String JSONOBJ) {
-        this.ID = ID;
-		this.PASSWORD = PASSWORD;
-	    
-	}
+	
 	public ContentDto(String ID, String NAME, String PASSWORD) {
 		this.ID=ID;
 		this.NAME = NAME;
@@ -72,5 +66,7 @@ public class ContentDto {
 	public void setNum(String num) {
 		this.num = num;
 	}
+	
+
 	
 }

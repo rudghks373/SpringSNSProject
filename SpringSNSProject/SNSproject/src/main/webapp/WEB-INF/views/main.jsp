@@ -114,6 +114,7 @@ $(document).ready(function() {
 		success: function (data) { 
 			if (data == "OK") {
                 console.log("세션값있음")
+                start();
 			}
 			else if (data == "NO") {
 				alert("로그인이 필요합니다.");
@@ -123,6 +124,47 @@ $(document).ready(function() {
    });
 });
 	
+	
+function start() {
+
+	$.ajax({
+		url : "fetch", //내가 보내는 서버주소(컨트롤러)
+		dataType : 'text', //내가 서버로 부터 리턴받는 데이터 형태
+		type : 'POST',
+		data : null, //내가 서버로 보내는 데이터
+		success: function (data) { 
+			var list = JSON.parse(data.trim());
+			console.log(list);
+			console.log(list.jsonobj);
+			console.log(list.id);
+			$("#--empty-msg").addClass("hide");
+			showFeeds(list);
+			
+		}
+	});
+}
+
+function showFeeds(list) {
+	var str = "";
+	for (var i=0; i<list.length; i++) {
+		str += showFeed(list[i]);
+	}
+	$("#--feed-list").html(str);
+}
+
+function showFeed(list) {
+	var str = "<div class='feed mbot-10'>";
+	
+	str += "<div class='section phor-16'>";
+	str += "<div class='face flex-embed'></div>";
+	str += "<div class='name'>" + list.id + "</div>";
+	str += "<div class='desc'>" + list.jsonobj + "</div>";
+	str += "</div>";
+
+	return str;
+}
+
+
 
 function showMenu(hide) {
 	if (hide == false) {
@@ -134,7 +176,7 @@ function showMenu(hide) {
 }
 
 function writeNew() {
-	window.location.href = "write.html";
+	window.location.href = "write";
 }
 
 function onSelect(menu) {
@@ -165,55 +207,5 @@ function logout() {
     }
 }
 
-function showFeeds(list) {
-	var str = "";
-	for (var i=0; i<list.length; i++) {
-		str += showFeed(list[i]);
-	}
-	$("#--feed-list").html(str);
-}
-
-function showFeed(feed) {
-	var str = "<div class='feed mbot-10'>";
-	
-	str += "<div class='section phor-16'>";
-	str += "<div class='face flex-embed'></div>";
-	str += "<div class='name'>" + feed.id + "</div>";
-	str += "<div class='desc'>" + feed.desc + "</div>";
-	str += "</div>";
-	
-	var images = feed.images;
-	if (images.length == 1) {
-		str += "<div class='section'>";
-		str += "<div class='flex-embed r16by9' style='background-image: url(\"" + getUrl(feed, 0) + "\")'></div>";
-		str += "</div>";
-	}
-	else if (images.length == 2) {
-		str += "<div class='grid-50'>";
-		str += "<div class='flex-embed' style='background-image: url(\"" + getUrl(feed, 0) + "\")'></div>";
-		str += "</div>";
-		str += "<div class='grid-50'>";
-		str += "<div class='flex-embed' style='background-image: url(\"" + getUrl(feed, 1) + "\")'></div>";
-		str += "</div>";
-	}
-	else if (images.length == 3) {
-		str += "<div class='grid-66'>";
-		str += "<div class='flex-embed' style='background-image: url(\"" + getUrl(feed, 0) + "\")'></div>";
-		str += "</div>";
-		str += "<div class='grid-33'>";
-		str += "<div class='flex-embed' style='background-image: url(\"" + getUrl(feed, 1) + "\")'></div>";
-		str += "</div>";
-		str += "<div class='grid-33'>";
-		str += "<div class='flex-embed' style='background-image: url(\"" + getUrl(feed, 2) + "\")'></div>";
-		str += "</div>";
-	}
-	
-	str += "</div>";
-	return str;
-}
-
-function getUrl(feed, index) {
-	return "images/" + feed.id + "/" + feed.images[index];
-}
 
 </script>

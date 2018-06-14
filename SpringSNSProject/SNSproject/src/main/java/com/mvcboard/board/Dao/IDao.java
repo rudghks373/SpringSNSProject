@@ -9,9 +9,11 @@ import com.mvcboard.board.Dto.ContentDto;
 public interface IDao {
 
 	public ArrayList<ContentDto> signcheck(String id);
+	public ArrayList<ContentDto> showlist(String id);
 	public void signup(Map map);
 	public void writeup(Map map);
 	public ArrayList<ContentDto> loginIdcheck(String id);
-	public ArrayList<ContentDto> fetch(String id);
+	public ArrayList<ContentDto> showlist2(String id);
+	
 
 }

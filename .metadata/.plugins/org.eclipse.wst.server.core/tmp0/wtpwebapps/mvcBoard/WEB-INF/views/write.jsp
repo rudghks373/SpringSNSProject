@@ -100,10 +100,6 @@ function maingo() {
 	location.replace("main");
 }
 
-function upload2() {
-
-	location.replace("fetch");
-}
 
 var pagectx = {};
 function start(id) {
@@ -129,7 +125,7 @@ function upload2() {
 	console.log(writedate);
 	$(document).ready(function() {
 		$.ajax({
-			url :'fetch', //내가 보내는 서버주소(컨트롤러)
+			url :'writeupdata', //내가 보내는 서버주소(컨트롤러)
 			dataType : 'text', //내가 서버로 부터 리턴받는 데이터 형태
 			type : 'POST', 
 			data : JSON.stringify(writedate),

@@ -55,9 +55,58 @@ public class mvcController {
 		return "start";
 	}
 	
+	@RequestMapping("fetch")
+	public @ResponseBody ContentDto fetch(Model model,  HttpSession session, @RequestBody String paramData	) throws ParseException{
+		
+		int cnt = 0; //글번호
+		
+		System.out.println("글목록쇼 체크창 접속");
+	    System.out.println("입력된 값:"+paramData);
+
+	    String logininfo = (String) session.getAttribute("iogincheck");
+	    System.out.println("글쓰기창세션값확인:"+logininfo);
+	   
+	    IDao dao = sqlSession.getMapper(IDao.class);
+	    ArrayList<ContentDto> showlist = dao.showlist2(logininfo);
+	    
+	    for(ContentDto showlist1 : showlist ){
+	    	System.out.println(showlist1);
+	    	return showlist1;
+	    }
+		return null;
+
 	
-	@RequestMapping("/fetch")
-	public @ResponseBody String fetch(Model model,  HttpSession session, @RequestBody String paramData	) throws ParseException{
+		
+	}
+	
+
+/*	@RequestMapping("showlist")
+	public @ResponseBody ContentDto showlist(Model model,  HttpSession session, @RequestBody String paramData	) throws ParseException{
+
+		System.out.println("글 뿌려주기 컨트롤러 접속");
+	    System.out.println("입력된 값:"+paramData);
+
+	    String logininfo = (String) session.getAttribute("iogincheck");
+	    
+	   
+	    IDao dao = sqlSession.getMapper(IDao.class);
+	    ArrayList<ContentDto> showlist = dao.showlist2(logininfo);
+	    for(ContentDto showlist1 : showlist) {
+	        
+	        return showlist1;
+	       }
+		return null;
+	   
+	}*/
+//글쓰기창
+	@RequestMapping("/write")
+	public String write(Model model){
+		return "write";
+	}
+	
+	
+	@RequestMapping("/writeupdata")
+	public @ResponseBody String writeupdata(Model model,  HttpSession session, @RequestBody String paramData	) throws ParseException{
 		System.out.println("글쓰기 컨트롤러 접속");
 	    System.out.println("입력된 값:"+paramData);
 	   
@@ -82,11 +131,14 @@ public class mvcController {
 		
 		System.out.println("db에 등록할 값 확인"+map);
 		
-	    dao.writeup(map);
-	    ArrayList<ContentDto> datadata = dao.fetch(logininfo);
+		dao.writeup(map);
+	
+	    ArrayList<ContentDto> datadata = dao.showlist(logininfo);
+	    
 	    for(ContentDto datadata1 : datadata) {
 	        System.out.println(datadata1.getJSONOBJ());
 	       }
+	    
 	    return "writeOK";
 	    }
 	    else{
@@ -98,13 +150,6 @@ public class mvcController {
 	   
 	}
 	
-	@RequestMapping("/write")
-	public String write(Model model){
-		
-		
-		return "write";
-	}
-	
 	//메인화면
 	@RequestMapping("/main")
 	public String main(){
@@ -112,7 +157,7 @@ public class mvcController {
 		return "main";
 	}
 	
-	//회원가입
+	//회원가입 & 회원가입체크
 	
 	@RequestMapping("/signup")
 	public String signup(){
@@ -159,6 +204,8 @@ public class mvcController {
 		
 	}
 	
+	
+	//로그인창 & 로그인체크
 	@RequestMapping("/login")
 	public String login(){
 		
@@ -192,6 +239,7 @@ public class mvcController {
 		else{
 		System.out.println("입력결과 DB에 아이디존재");
         ContentDto passwordcheck = dao.loginIdcheck(data1).get(0);
+        
         passwordcheck.getPASSWORD();
         
         System.out.println("로그인입력 패스워드:"+data2);
@@ -213,7 +261,7 @@ public class mvcController {
 	}
 	}
 	
-	
+	//세션확인
 	@RequestMapping("/sessioncheck")
 	public @ResponseBody String sessioncheck(Model model , HttpSession session , @RequestBody String paramData) {
 		
@@ -237,6 +285,8 @@ public class mvcController {
 	
         
 }
+	
+	//로그아웃으로 인한 세션제거
 	@RequestMapping("/logout")
 	public String logout(Model model , HttpSession session) {
 		

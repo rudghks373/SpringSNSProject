@@ -42,16 +42,24 @@ public class ContentDao implements IDao {
 	}
 
 	@Override
-	public ArrayList<ContentDto> fetch(String id) {
+	public void writeup(Map map) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public ArrayList<ContentDto> showlist(String id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void writeup(Map map) {
+	public ArrayList<ContentDto> showlist2(String id) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
+
+
 
 
 
