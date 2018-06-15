@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <html>
 <head>
 <meta name=viewport content="width=device-width, initial-scale=1, user-scalable=0">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" href="css/core.css">
 <link rel="stylesheet" href="css/core2.css" media="only screen and (min-width:800px)">
+
 <title>My Social Network</title>
 <style>
 .page-msg {
@@ -98,6 +100,14 @@
 		<div class="desc">작성글이 존재하지 않습니다.</div>
 	</div>
 	<div id="--feed-list" class="section"></div>
+	<c:forEach items="${list}" var="dto"> 
+    <div class='feed mbot-10'>	
+    <div class='section phor-16'>
+    <div class='face flex-embed'></div>
+    <div class='name'>${dto.ID}</div>
+    <div class='desc'>${dto.JSONOBJ}</div>
+    </div>
+    </c:forEach>   
 </body>
 </html>
 
@@ -114,7 +124,7 @@ $(document).ready(function() {
 		success: function (data) { 
 			if (data == "OK") {
                 console.log("세션값있음")
-                start();
+            
 			}
 			else if (data == "NO") {
 				alert("로그인이 필요합니다.");
@@ -124,35 +134,33 @@ $(document).ready(function() {
    });
 });
 	
-	
-function start() {
 
 	$.ajax({
 		url : "fetch", //내가 보내는 서버주소(컨트롤러)
 		dataType : 'text', //내가 서버로 부터 리턴받는 데이터 형태
 		type : 'POST',
 		data : null, //내가 서버로 보내는 데이터
-		success: function (data) { 
-			var list = JSON.parse(data.trim());
-			console.log(list);
-			console.log(list.jsonobj);
-			console.log(list.id);
-			$("#--empty-msg").addClass("hide");
-			showFeeds(list);
+		success: function (data) {
+			console.log(data);
+			if( data =! null){
+				$("#--empty-msg").addClass("hide");
+	
+			}
 			
 		}
 	});
-}
 
-function showFeeds(list) {
+
+
+/*  function showFeeds(list) {
 	var str = "";
 	for (var i=0; i<list.length; i++) {
 		str += showFeed(list[i]);
 	}
 	$("#--feed-list").html(str);
-}
+ */
 
-function showFeed(list) {
+/* function showFeed(list) {
 	var str = "<div class='feed mbot-10'>";
 	
 	str += "<div class='section phor-16'>";
@@ -162,8 +170,7 @@ function showFeed(list) {
 	str += "</div>";
 
 	return str;
-}
-
+} */
 
 
 function showMenu(hide) {

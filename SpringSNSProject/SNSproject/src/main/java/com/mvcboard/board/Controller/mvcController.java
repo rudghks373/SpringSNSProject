@@ -8,6 +8,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import javax.crypto.Mac;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionContext;
@@ -39,6 +40,8 @@ public class mvcController {
 	
 	private static final String OK = null;
 
+	private static final int HashMap = 0;
+
 	ContentDao dao;
 	
 	@Autowired
@@ -56,9 +59,8 @@ public class mvcController {
 	}
 	
 	@RequestMapping("fetch")
-	public @ResponseBody ContentDto fetch(Model model,  HttpSession session, @RequestBody String paramData	) throws ParseException{
-		
-		int cnt = 0; //글번호
+	public @ResponseBody ArrayList<ContentDto> fetch(Model model,  HttpSession session, @RequestBody String paramData	) throws ParseException{
+
 		
 		System.out.println("글목록쇼 체크창 접속");
 	    System.out.println("입력된 값:"+paramData);
@@ -68,16 +70,10 @@ public class mvcController {
 	   
 	    IDao dao = sqlSession.getMapper(IDao.class);
 	    ArrayList<ContentDto> showlist = dao.showlist2(logininfo);
-	    
-	    for(ContentDto showlist1 : showlist ){
-	    	System.out.println(showlist1);
-	    	return showlist1;
-	    }
-		return null;
-
+        return showlist;
+        
+        }
 	
-		
-	}
 	
 
 /*	@RequestMapping("showlist")
@@ -152,8 +148,14 @@ public class mvcController {
 	
 	//메인화면
 	@RequestMapping("/main")
-	public String main(){
+	public String main(Model model ,HttpSession session){
+
 	
+	    String logininfo = (String) session.getAttribute("iogincheck");
+	    System.out.println("글쓰기창세션값확인:"+logininfo);
+	   
+	    IDao dao = sqlSession.getMapper(IDao.class);
+	    model.addAttribute("list" , dao.showlist2(logininfo));
 		return "main";
 	}
 	
