@@ -59,6 +59,14 @@ public class ContentDao implements IDao {
 		return null;
 	}
 
+	@Override
+	public void deletelist(String num) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
 
 
 

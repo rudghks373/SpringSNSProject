@@ -11,7 +11,7 @@
 <title>My Social Network</title>
 <style>
 .page-msg {
-	display: table;
+	display: table;	
 	float: left;
 	width: 100%;
 	height: calc(100% - 90px);
@@ -52,6 +52,12 @@
 	padding: 15px 0px;
 	box-sizing: border-box;	
 }
+.feed .gogogo {
+	float: right;
+	width: 5%;
+	padding: 15px 0px;
+	box-sizing: border-box;	
+}
 .page-hdr .back {
 	position: absolute;
 	left: 10px; top: 16px;
@@ -85,6 +91,7 @@
 	background-repeat: no-repeat;
 	cursor: pointer;
 }
+
 </style>
 </head>
 <body style="background-color: #eee">
@@ -100,14 +107,21 @@
 		<div class="desc">작성글이 존재하지 않습니다.</div>
 	</div>
 	<div id="--feed-list" class="section"></div>
+
 	<c:forEach items="${list}" var="dto"> 
+	</div>
     <div class='feed mbot-10'>	
     <div class='section phor-16'>
     <div class='face flex-embed'></div>
-    <div class='name'>${dto.ID}</div>
+    <div class='name'>글번호:${dto.num}</div>
+    <div class='name'>작성자:${dto.ID}</div>
     <div class='desc'>${dto.JSONOBJ}</div>
+    <div class='gogogo'><a href="delete?num=${dto.num}">삭제</a></div>
+    <div class='gogogo'><a href="writeupdata">수정</a></div>
+    <div class='desc'></div>
     </div>
     </c:forEach>   
+
 </body>
 </html>
 
@@ -124,7 +138,21 @@ $(document).ready(function() {
 		success: function (data) { 
 			if (data == "OK") {
                 console.log("세션값있음")
-            
+            	$.ajax({
+            		url : "fetch", //내가 보내는 서버주소(컨트롤러)
+            		dataType : 'text', //내가 서버로 부터 리턴받는 데이터 형태
+            		type : 'POST',
+            		data : null, //내가 서버로 보내는 데이터
+            		success: function (data) {
+            			console.log(data);
+            			if( data =="null"){
+            				console.log(data);
+            			}
+            			else if(data == "OK"){
+            				$("#--empty-msg").addClass("hide");
+            			}
+            		}
+            	});
 			}
 			else if (data == "NO") {
 				alert("로그인이 필요합니다.");
@@ -133,45 +161,6 @@ $(document).ready(function() {
 	      }
    });
 });
-	
-
-	$.ajax({
-		url : "fetch", //내가 보내는 서버주소(컨트롤러)
-		dataType : 'text', //내가 서버로 부터 리턴받는 데이터 형태
-		type : 'POST',
-		data : null, //내가 서버로 보내는 데이터
-		success: function (data) {
-			console.log(data);
-			if( data =! null){
-				$("#--empty-msg").addClass("hide");
-	
-			}
-			
-		}
-	});
-
-
-
-/*  function showFeeds(list) {
-	var str = "";
-	for (var i=0; i<list.length; i++) {
-		str += showFeed(list[i]);
-	}
-	$("#--feed-list").html(str);
- */
-
-/* function showFeed(list) {
-	var str = "<div class='feed mbot-10'>";
-	
-	str += "<div class='section phor-16'>";
-	str += "<div class='face flex-embed'></div>";
-	str += "<div class='name'>" + list.id + "</div>";
-	str += "<div class='desc'>" + list.jsonobj + "</div>";
-	str += "</div>";
-
-	return str;
-} */
-
 
 function showMenu(hide) {
 	if (hide == false) {

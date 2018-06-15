@@ -39,6 +39,7 @@ body {
 .mbot-10 { margin-bottom: 10px }
 .mbot-20 { margin-bottom: 20px }
 .mbot-30 { margin-bottom: 30px }
+.mbot-100 { margin-bottom: 100px }
 
 .page-hdr {
 	position: relative;
