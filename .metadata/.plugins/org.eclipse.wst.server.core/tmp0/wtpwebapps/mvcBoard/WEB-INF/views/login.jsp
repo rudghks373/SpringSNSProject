@@ -25,7 +25,7 @@
 		</div>
 		<div class="form-btn mbot-30" onclick="signup()">회원가입</div>
 	</div>
-	<div class="page-footer">MYSNS COMPANY 2017</div>
+	<div class="page-footer">MYSNS COMPANY 2018</div>
 </body>
 </html>
 

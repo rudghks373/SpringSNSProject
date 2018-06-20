@@ -74,7 +74,7 @@
 		<div class="button" onclick="maingo()">메인으로 돌아가기</div>
 		</div>
 	</div>
-	<div class="page-footer">MYSNS COMPANY 2017</div>
+	<div class="page-footer">MYSNS COMPANY 2018</div>
 </body>
 </html>
 
