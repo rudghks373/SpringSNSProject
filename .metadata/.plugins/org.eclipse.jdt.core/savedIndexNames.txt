@@ -3,7 +3,6 @@ INDEX VERSION 1.130+C:\Users\KyungHwan\Desktop\SnsProject\.metadata\.plugins\org
 2796293671.index
 1913094114.index
 1329257546.index
-3948537542.index
 2337691538.index
 404083374.index
 3115221559.index
@@ -22,11 +21,9 @@ INDEX VERSION 1.130+C:\Users\KyungHwan\Desktop\SnsProject\.metadata\.plugins\org
 592600685.index
 2461558080.index
 258546089.index
-373287785.index
 3285036664.index
 1140465838.index
 4189906617.index
-3949205623.index
 4232500288.index
 1860642593.index
 3693261185.index
@@ -37,7 +34,6 @@ INDEX VERSION 1.130+C:\Users\KyungHwan\Desktop\SnsProject\.metadata\.plugins\org
 2400541166.index
 1717558784.index
 1543893058.index
-1592071154.index
 3319862467.index
 1580166048.index
 155571304.index
