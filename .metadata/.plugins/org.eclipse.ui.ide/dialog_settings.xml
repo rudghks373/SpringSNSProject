@@ -12,6 +12,7 @@
 		<item value="false" key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID"/>
 		<item value="false" key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED"/>
 		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="C:\Users\KyungHwan\Desktop\eGovFrameDev-3.7.0-64bit\workspace\spring_pjt_board"/>
 			<item value="C:\Users\KyungHwan\Desktop\eGovFrameDev-3.7.0-64bit\workspace\spring_28_1_ex1_springex2"/>
 			<item value="C:\Users\KyungHwan\Desktop\mysns\mysns - 19 - feed display in main html"/>
 			<item value="C:\Users\KyungHwan\Desktop\SnsProject"/>

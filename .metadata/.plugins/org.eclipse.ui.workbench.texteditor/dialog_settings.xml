@@ -2,20 +2,20 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="showMenu(" key="selection"/>
+		<item value="json" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="json"/>
+			<item value="&#x09;&#x09;    &lt;groupId&gt;com.googlecode.json-simple&lt;/groupId&gt;"/>
+			<item value="Dto"/>
+			<item value="dto"/>
+			<item value="입력된"/>
+			<item value="입력"/>
+			<item value="main"/>
 			<item value="showMenu("/>
-			<item value="flex-embed"/>
-			<item value="--feed-list"/>
-			<item value="phor-16"/>
-			<item value="phor-16&apos;"/>
-			<item value="mbot-10"/>
-			<item value="feed mbot-10"/>
-			<item value="desc"/>
 		</list>
 		<list key="replacehistory">
 		</list>

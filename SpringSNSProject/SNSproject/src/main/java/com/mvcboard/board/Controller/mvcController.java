@@ -4,33 +4,20 @@ package com.mvcboard.board.Controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
-import javax.crypto.Mac;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.HttpSessionContext;
-
 import org.apache.ibatis.session.SqlSession;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.support.SessionStatus;
-import org.springframework.web.servlet.ModelAndView;
-import org.apache.ibatis.session.SqlSession;
-import com.mvcboard.board.Dao.ContentDao;
 import com.mvcboard.board.Dto.ContentDto;
 import com.mvcboard.board.Dao.*;
 
@@ -39,9 +26,6 @@ import com.mvcboard.board.Dao.*;
 @Controller
 public class mvcController {
 	
-	private static final String OK = null;
-
-	private static final int HashMap = 0;
 
 	ContentDao dao;
 	
@@ -64,7 +48,7 @@ public class mvcController {
 
 		
 		System.out.println("글목록쇼 체크창 접속");
-	    System.out.println("입력된 값:"+paramData);
+	   
 
 	    String logininfo = (String) session.getAttribute("iogincheck");
 	    System.out.println("글쓰기창세션값확인:"+logininfo);
@@ -74,13 +58,14 @@ public class mvcController {
 	    
 	    if(showlist.isEmpty()){
 	    	System.out.println("빈값:"+showlist.isEmpty());
+	    
         return "null";
 	    }
-	    else{
-	    	return "OK";
+	    else {
+	    	
+			return logininfo;
 	    }
 	   
-        
         }
 	
 
@@ -143,22 +128,87 @@ public class mvcController {
 		return "redirect:main";
 	}
 
+	
+	@RequestMapping("/wwritereupdate")
+	public String wwritereupdate(HttpServletRequest request, Model model){
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+	    ArrayList<ContentDto> datadata = dao.writeupdata(request.getParameter("num"));
+		model.addAttribute("writedata", datadata.get(0).getJSONOBJ());
+        model.addAttribute("num" , request.getParameter("num"));
+		System.out.println(datadata);
+		
+		return "writereupdate";
+	}
+	
+	@RequestMapping("/writereupdate")
+	public String writereupdate(HttpServletRequest request, Model model){
+
+		
+		return "writereupdate";
+	}
+	
+	@RequestMapping("/modify")
+	public @ResponseBody String modify(Model model,  HttpSession session, @RequestBody String paramData	) throws ParseException{
+		System.out.println("글쓰기 컨트롤러 접속");
+	    System.out.println("입력된 값:"+paramData);
+	    
+	    String logininfo = (String) session.getAttribute("iogincheck");
+	    JSONParser parser = new JSONParser(); //–JSON Parser 생성
+	    JSONObject jsonObj = (JSONObject)parser.parse(paramData); //– 넘어온 문자열을 JSON 객체로 변환
+	    
+	    String data1 = jsonObj.get("jsonobj").toString();
+	    String data2 = jsonObj.get("num").toString();
+        
+	    System.out.println(data1);
+	    System.out.println(data2);
+	    if(logininfo != null){
+	    IDao dao = sqlSession.getMapper(IDao.class);
+	   
+	    Map map = new HashMap();
+	    map.put("jsonobj", data1);
+		map.put("num", data2);
+
+		
+		System.out.println("db에 등록할 값 확인"+map);
+		dao.modify(map);
+		
+	    return "writeOK";
+	    }
+	    else{
+	    System.out.println("세션이 존재하지않음");
+		return "writeNO";
+	    }
+	}
+	
+	
 	//메인화면 and 글뿌려주기
 	@RequestMapping("/main")
-	public String main(Model model ,HttpSession session){
+	public String main(Model model ,HttpSession session , @RequestBody String paramData)throws ParseException{
 
 		IDao dao = sqlSession.getMapper(IDao.class);
+		System.out.println("입력값확인:"+ paramData);
+		
 	    String logininfo = (String) session.getAttribute("iogincheck");
 	    System.out.println("글쓰기창세션값확인:"+logininfo);
+		ArrayList<ContentDto> list = dao.showlist2(logininfo);
 	    if(logininfo==null){
-	    	return "main";
+	    return "main";
+	    
 	    }
 	    else if(!(dao.showlist2(logininfo)==null)){
+
+	   	    model.addAttribute("list", dao.showlist2(logininfo));
+	   	    return "main";
+        }
 	   
-	    model.addAttribute("list" , dao.showlist2(logininfo));
+	    
+	
+	    return "main";
+		
 	    }
-		return "main";
-	}
+	
+	
 	
 	//회원가입 & 회원가입체크
 	

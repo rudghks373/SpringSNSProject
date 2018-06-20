@@ -29,7 +29,7 @@
 	line-height: 32px;
 }
 .form-txbn .button {
-	float: left;
+	float: right;
 	padding: 5px 20px;
 	font-size: 0.9em;
 	background-color: white;
@@ -39,10 +39,7 @@
 	border-radius: 8px;
 	cursor: pointer;
 }
-.form-txbn .button2 {
-	float: right;
-    padding: 5px 20px;
-}
+
 .image-pane {
 	float: left;
 	width: 100%;
@@ -64,16 +61,9 @@
 		<textarea id="--desc" class="form-mtxt mtop-20 mbot-20" rows=5 placeholder="나누고자 하는 이야기를 올려보세요."></textarea>
 		<div class="form-txbn">
 		
-		 <label class="tran_03">
-         <div class="button" onclick="openImage()">사진추가</div>
-         </label>
-         <div class="button2">
-            <input type="file" name="file" onchange="javascript:document.getElementById('file_route1').value=this.value">
-			<input type="text" readonly="readonly" title="File Route" id="file_route1" placeholder="파일을 선택해 주세요.">
-	     </div>		  
-			  
+         <div class="button" onclick="openImage()">사진추가</div>			  
 		</div>
-		<div id="--img-pane" class="image-pane mtop-10 mbot-20"></div>
+
 		
 		<div class="section mbot-30">
 		<div class="form-submit" onclick="upload2()">작성글을 업로드합니다.</div>
@@ -113,30 +103,6 @@ function maingo() {
 }
 
 
-var pagectx = {};
-function start(id) {
-	pagectx.id = id;
-	
-	ImageUploader.init("#--img-pane");
-}
-
-function openImage() {
-    var form = $('#FILE_FORM')[0];
-    var formData = new FormData(form);
-    formData.append("fileObj", $("#FILE_TAG")[0].files[0]);
-    formData.append("fileObj2", $("#FILE_TAG2")[0].files[0]);
-
-    $.ajax({
-        url: '',
-                processData: false,
-                contentType: false,
-                data: formData,
-                type: 'POST',
-                success: function(result){
-                    alert("업로드 성공!!");
-                }
-        });
-}
 
 function upload2() {
 	if (check() == false) return;

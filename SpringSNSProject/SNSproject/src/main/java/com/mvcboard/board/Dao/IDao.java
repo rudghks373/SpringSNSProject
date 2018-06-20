@@ -14,6 +14,8 @@ public interface IDao {
 	public void writeup(Map map);
 	public ArrayList<ContentDto> loginIdcheck(String id);
 	public ArrayList<ContentDto> showlist2(String id);
+	public ArrayList<ContentDto> writeupdata(String num);
 	public void deletelist(String num);
+	public void modify(Map map);
 
 }

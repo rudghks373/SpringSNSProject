@@ -108,8 +108,7 @@
 	</div>
 	<div id="--feed-list" class="section"></div>
 
-	<c:forEach items="${list}" var="dto"> 
-	</div>
+	<c:forEach items="${list}" var="dto"> </div>
     <div class='feed mbot-10'>	
     <div class='section phor-16'>
     <div class='face flex-embed'></div>
@@ -117,10 +116,11 @@
     <div class='name'>작성자:${dto.ID}</div>
     <div class='desc'>${dto.JSONOBJ}</div>
     <div class='gogogo'><a href="delete?num=${dto.num}">삭제</a></div>
-    <div class='gogogo'><a href="writeupdata">수정</a></div>
+    <div class='gogogo'><a href="wwritereupdate?num=${dto.num}">수정</a></div>
     <div class='desc'></div>
     </div>
     </c:forEach>   
+
 
 </body>
 </html>
@@ -146,19 +146,21 @@ $(document).ready(function() {
             		success: function (data) {
             			console.log(data);
             			if( data =="null"){
-            				console.log(data);
+            				console.log(data);         				
             			}
-            			else if(data == "OK"){
+            			else{
             				$("#--empty-msg").addClass("hide");
+   
             			}
             		}
             	});
-			}
+			}	
 			else if (data == "NO") {
 				alert("로그인이 필요합니다.");
 				location.replace("login");
 			}			
-	      }
+		}
+	
    });
 });
 
@@ -181,6 +183,36 @@ function onSelect(menu) {
 	}
 	showMenu(false);
 }
+
+function start(id) {
+	var loginid = id;
+	var value2 = ""
+	console.log(loginid);
+	showFeeds(${jsonobj});
+	 
+	
+}
+
+/* function showFeeds(list) {
+	var str = "";
+	for (var i=0; i<list.length; i++) {
+		str += showFeed(list);
+	}
+	$("#--feed-list").html(str);
+}
+
+function showFeed(feed) {
+	var str = "<div class='feed mbot-10'>";
+	str += "<div class='section phor-16'>";
+	str += "<div class='face flex-embed'></div>";
+	str += "<div class='name'>" + ${dto.ID} + "</div>";
+	str += "<div class='desc'>" + ${dto.JSONOBJ} + "</div>";
+	str += "</div>";
+	
+
+	return str;
+}
+ */
 
 function logout() {
 	if(confirm("로그아웃 하시겠습니까?") == true) {

@@ -21,6 +21,9 @@ SELECT id, JSONOBJ FROM FEED WHERE id = #{id}
 SELECT num,id,JSONOBJ FROM FEED WHERE id = #{id} ORDER BY num DESC
 </select>
 
+<select id="writeupdata" resultType="com.mvcboard.board.Dto.ContentDto">
+SELECT JSONOBJ FROM FEED WHERE num = #{num}
+</select>
 
 <insert id="signup" parameterType="hashMap">
 INSERT INTO USERS(id, name, password) VALUES(#{parameter1}, #{parameter2}, #{parameter3})
@@ -33,4 +36,15 @@ INSERT INTO FEED(num, id, jsonobj) VALUES(FEEDINDEX.NEXTVAL, #{id} , #{jsonobj})
 <delete id="deletelist">
 delete from feed where num = #{num}
 </delete>
+
+<update  id="modify" parameterType="hashMap">
+UPDATE feed
+<set>
+jsonobj = #{jsonobj}
+</set>
+<where>
+num = #{num}
+</where>
+</update>
+
 </mapper>
