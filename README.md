@@ -22,11 +22,11 @@
 
 - ##### 로그인 및 회원가입 창
 
-![ㄹㅇㄹ](C:\Users\KyungHwan\Desktop\SpringSNSProject\ㄹㅇㄹ.jpg)
+![default](https://user-images.githubusercontent.com/32234263/41693929-c2723ab2-7542-11e8-9382-a4ea83232542.jpg)
 
 - ##### 메인창 
 
-![메인](C:\Users\KyungHwan\Desktop\SpringSNSProject\메인.jpg)
+![default](https://user-images.githubusercontent.com/32234263/41693941-cce85ec2-7542-11e8-9e60-27f326ce80ea.jpg)
 
 
 
