@@ -1,0 +1,4 @@
+127.0.0.1 - - [21/Jun/2018:10:28:15 +0900] "GET / HTTP/1.1" 404 994
+0:0:0:0:0:0:0:1 - - [21/Jun/2018:10:28:16 +0900] "GET /board/WEB-INF/classes/com/mvcboard/board/HomeController.java HTTP/1.1" 404 992
+0:0:0:0:0:0:0:1 - - [21/Jun/2018:10:28:19 +0900] "GET /board/home HTTP/1.1" 404 992
+0:0:0:0:0:0:0:1 - - [21/Jun/2018:10:28:25 +0900] "GET /board/ HTTP/1.1" 200 179
